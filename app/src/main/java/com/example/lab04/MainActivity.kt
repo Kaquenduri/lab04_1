@@ -50,7 +50,9 @@ fun InterfazSimple() {
     // Estado para la categoría seleccionada
     var categoriaSeleccionada by remember { mutableStateOf("Secundaria") }
     var mostrarDialogo by remember { mutableStateOf(false) }
-
+    val estadoSnackbar = remember { SnackbarHostState() }
+    val alcanceCorrutina = rememberCoroutineScope()
+    
     Scaffold { padding ->
         Column(
             modifier = Modifier
@@ -92,6 +94,36 @@ fun InterfazSimple() {
                     Text("Curso de Móviles")
                 }
             }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Botón para mostrar Snackbar
+            Button(onClick = {
+                alcanceCorrutina.launch {
+                    estadoSnackbar.showSnackbar("Te inscribiste en $categoriaSeleccionada")
+                }
+            }) {
+                Text("Inscribirme")
+            }
+
+        }
+        // Diálogo de confirmación
+        if (mostrarDialogo) {
+            AlertDialog(
+                onDismissRequest = { mostrarDialogo = false },
+                title = { Text("Confirmar inscripción") },
+                text = { Text("¿Quieres inscribirte en $categoriaSeleccionada?") },
+                confirmButton = {
+                    TextButton(onClick = { mostrarDialogo = false }) {
+                        Text("Sí")
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { mostrarDialogo = false }) {
+                        Text("No")
+                    }
+                }
+            )
         }
     }
 }
