@@ -49,6 +49,7 @@ class MainActivity : ComponentActivity() {
 fun InterfazSimple() {
     // Estado para la categoría seleccionada
     var categoriaSeleccionada by remember { mutableStateOf("Secundaria") }
+    var mostrarDialogo by remember { mutableStateOf(false) }
 
     Scaffold { padding ->
         Column(
@@ -68,6 +69,29 @@ fun InterfazSimple() {
                 },
                 label = { Text("Categoría: $categoriaSeleccionada") }
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Card con ícono
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.Cyan),
+                onClick = { mostrarDialogo = true }
+            ) {
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Lock,
+                        contentDescription = "Icono de Curso",
+                        tint = Color.Blue
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("Curso de Móviles")
+                }
+            }
         }
     }
 }
