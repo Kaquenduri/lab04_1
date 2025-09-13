@@ -78,7 +78,7 @@ fun InterfazSimple() {
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.Cyan),
+                colors = CardDefaults.cardColors(containerColor = Color.Red),
                 onClick = { mostrarDialogo = true }
             ) {
                 Row(
@@ -98,7 +98,9 @@ fun InterfazSimple() {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Botón para mostrar Snackbar
-            Button(onClick = {
+            Button(
+                colors = ButtonDefaults.buttonColors(Color.Green),
+                onClick = {
                 alcanceCorrutina.launch {
                     estadoSnackbar.showSnackbar("Te inscribiste en $categoriaSeleccionada")
                 }
