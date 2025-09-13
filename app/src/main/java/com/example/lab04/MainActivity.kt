@@ -99,7 +99,7 @@ fun InterfazSimple() {
 
             // Botón para mostrar Snackbar
             Button(
-                colors = ButtonDefaults.buttonColors(Color.Green),
+                colors = ButtonDefaults.buttonColors(Color.Blue),
                 onClick = {
                 alcanceCorrutina.launch {
                     estadoSnackbar.showSnackbar("Te inscribiste en $categoriaSeleccionada")
